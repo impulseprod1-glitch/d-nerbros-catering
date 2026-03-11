@@ -1,0 +1,131 @@
+.wa-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: waFadeIn 1s ease forwards;
+}
+
+@keyframes waFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.wa-button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3), 
+              inset 0 0 10px rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wa-icon {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.wa-container:hover .wa-button {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 
+              inset 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.wa-container:hover .wa-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Premium pulse effect */
+.wa-pulse, .wa-pulse-delay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.4);
+  z-index: 1;
+  pointer-events: none;
+  animation: waPulseAnim 2.5s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wa-pulse-delay {
+  animation-delay: 1.25s;
+}
+
+@keyframes waPulseAnim {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+/* Tooltip floating text */
+.wa-tooltip {
+  position: absolute;
+  right: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  white-space: nowrap;
+}
+
+.wa-container:hover .wa-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.wa-tooltip-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.wa-tooltip-number {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .wa-container {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .wa-button {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .wa-tooltip {
+    display: none; /* Hide tooltip on small mobile so it doesn't block text */
+  }
+}

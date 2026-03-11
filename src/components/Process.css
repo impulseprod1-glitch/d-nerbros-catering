@@ -1,0 +1,208 @@
+.process {
+  background-color: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow orbs like Services */
+.process-ambient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.process-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: processOrbBreathe 8s ease-in-out infinite;
+}
+
+.process-orb-1 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+  top: -100px;
+  right: -50px;
+}
+
+.process-orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(230, 126, 34, 0.06) 0%, transparent 70%);
+  bottom: -80px;
+  left: -40px;
+  animation-delay: 4s;
+}
+
+@keyframes processOrbBreathe {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.process .container {
+  position: relative;
+  z-index: 1;
+}
+
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+  position: relative;
+}
+
+.process-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 2rem;
+}
+
+/* Large watermark number */
+.step-number {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, transparent 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  letter-spacing: -2px;
+  pointer-events: none;
+}
+
+/* Premium icon wrapper with animated gradient border */
+.step-icon-wrapper {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem auto;
+  color: var(--brand-primary);
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Animated rotating gradient border */
+.step-icon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(212, 175, 55, 0.6),
+    rgba(230, 126, 34, 0.3),
+    transparent 40%,
+    transparent 60%,
+    rgba(212, 175, 55, 0.3),
+    rgba(212, 175, 55, 0.6)
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderSpin 6s linear infinite;
+}
+
+@keyframes borderSpin {
+  to { transform: rotate(360deg); }
+}
+
+.process-step:hover .step-icon-wrapper {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15),
+              0 0 20px rgba(212, 175, 55, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Premium connector line */
+.step-connector {
+  position: absolute;
+  top: 50px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.3) 30%, 
+    rgba(212, 175, 55, 0.5) 50%, 
+    rgba(212, 175, 55, 0.3) 70%, 
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+.step-connector::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  background: var(--brand-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.step-title {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.step-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 992px) {
+  .process-timeline {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  .step-connector {
+    right: auto;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 4rem;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, 
+      transparent 0%, 
+      rgba(212, 175, 55, 0.3) 30%, 
+      rgba(212, 175, 55, 0.5) 50%, 
+      rgba(212, 175, 55, 0.3) 70%, 
+      transparent 100%
+    );
+  }
+
+  .step-connector::after {
+    top: auto;
+    bottom: -4px;
+    right: auto;
+    left: -3px;
+  }
+}
