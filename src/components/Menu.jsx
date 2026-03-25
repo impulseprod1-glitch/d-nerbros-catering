@@ -14,11 +14,13 @@ const Menu = () => {
         ],
         burger_station: [
             { id: 4, nameKey: 'menu_item_4_name', descKey: 'menu_item_4_desc', priceKey: 'menu_price_default', image: 'menu-burgers.png' },
-            { id: 5, nameKey: 'menu_item_5_name', descKey: 'menu_item_5_desc', priceKey: 'menu_price_default', image: 'menu-street-food.png' }
+            { id: 5, nameKey: 'menu_item_5_name', descKey: 'menu_item_5_desc', priceKey: 'menu_price_default', image: 'menu-street-food.png' },
+            { id: 8, nameKey: 'menu_item_8_name', descKey: 'menu_item_8_desc', priceKey: 'menu_price_default', image: 'menu-beef-doner.png' }
         ],
         vegan_veggie: [
             { id: 6, nameKey: 'menu_item_6_name', descKey: 'menu_item_6_desc', priceKey: 'menu_price_default', image: 'menu-mixed-doner.png' },
-            { id: 7, nameKey: 'menu_item_7_name', descKey: 'menu_item_7_desc', priceKey: 'menu_price_default', image: 'menu-street-food.png' }
+            { id: 7, nameKey: 'menu_item_7_name', descKey: 'menu_item_7_desc', priceKey: 'menu_price_default', image: 'menu-street-food.png' },
+            { id: 9, nameKey: 'menu_item_9_name', descKey: 'menu_item_9_desc', priceKey: 'menu_price_default', image: 'menu-mixed-doner.png' }
         ]
     };
 

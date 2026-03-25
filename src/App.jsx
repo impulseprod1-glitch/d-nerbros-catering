@@ -6,6 +6,8 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Menu from './components/Menu';
+import PricingCalculator from './components/PricingCalculator';
+import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
 import Process from './components/Process';
 import Footer from './components/Footer';
@@ -36,6 +38,8 @@ function App() {
             <Hero />
             <Services />
             <Menu />
+            <PricingCalculator />
+            <Gallery />
             <Reviews />
             <Process />
           </main>

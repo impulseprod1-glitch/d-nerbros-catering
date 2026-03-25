@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import './Intro.css';
 
 const Intro = ({ onComplete }) => {
+    const { t } = useLanguage();
     const [phase, setPhase] = useState('glow'); // glow → logo → exit
 
     useEffect(() => {
@@ -81,7 +83,7 @@ const Intro = ({ onComplete }) => {
 
             <div className="intro-logo">
                 <span className="intro-logo-accent">Döner</span>Bros
-                <div className="intro-tagline">Premium Catering Berlin</div>
+                <div className="intro-tagline">{t('intro_tagline')}</div>
             </div>
         </div>
     );

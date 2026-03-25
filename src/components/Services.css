@@ -214,6 +214,19 @@
   transition: opacity 0.4s ease;
 }
 
+.icon-inner {
+  animation: floatIcon 4s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes floatIcon {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
 .service-card-premium:hover .icon-hexagon {
   background: var(--icon-color);
   color: #000;

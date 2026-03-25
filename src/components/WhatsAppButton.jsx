@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import './WhatsAppButton.css';
 
 const WhatsAppButton = () => {
+    const { t } = useLanguage();
     const [isVisible, setIsVisible] = useState(false);
     const [showBubble, setShowBubble] = useState(false);
     const phoneNumber = "491789209116"; // 01789209116 without the starting 0, with 49
-    const message = "Hallo Döner Bros Catering, ich würde gerne mehr über euer Angebot erfahren!";
+    const message = t('wa_message');
 
     useEffect(() => {
         // Show button after a small delay
@@ -34,7 +36,7 @@ const WhatsAppButton = () => {
         <div className="wa-container-wrapper">
             {showBubble && (
                 <div className="wa-chat-bubble reveal-active">
-                    <p className="wa-bubble-text">Hangi tarih için catering bakıyorsunuz? 😊</p>
+                    <p className="wa-bubble-text">{t('wa_bubble')}</p>
                     <button className="wa-bubble-close" onClick={(e) => {
                         e.stopPropagation();
                         setShowBubble(false);
@@ -61,7 +63,7 @@ const WhatsAppButton = () => {
                     </svg>
                 </button>
                 <div className="wa-tooltip">
-                    <span className="wa-tooltip-text">WhatsApp Catering</span>
+                    <span className="wa-tooltip-text">{t('wa_tooltip')}</span>
                     <span className="wa-tooltip-number">+49 178 9209116</span>
                 </div>
             </div>

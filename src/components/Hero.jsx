@@ -7,18 +7,28 @@ const Hero = () => {
     const { t } = useLanguage();
     const heroRef = useRef(null);
 
-    // Parallax shimmer particles
+    // Parallax shimmer particles - Optimized with IntersectionObserver
     useEffect(() => {
         const canvas = document.getElementById('hero-particles');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let animId;
+        let isVisible = true; // Track visibility
+        let resizeTimeout;
 
         const resize = () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (canvas) {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                }
+            }, 100); // 100ms debounce
         };
-        resize();
+        
+        // Initial set
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
         window.addEventListener('resize', resize);
 
         const particles = Array.from({ length: 40 }, () => ({
@@ -32,6 +42,11 @@ const Hero = () => {
         }));
 
         const draw = () => {
+            animId = requestAnimationFrame(draw);
+            
+            // Skip drawing and math if not visible
+            if (!isVisible) return;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => {
                 p.x += p.speedX;
@@ -55,13 +70,25 @@ const Hero = () => {
                 ctx.fillStyle = `rgba(212, 175, 55, ${currentOpacity * 0.15})`;
                 ctx.fill();
             });
-            animId = requestAnimationFrame(draw);
         };
         draw();
+
+        // Setup Intersection Observer to pause animation when off-screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting;
+            });
+        }, { threshold: 0 });
+
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
 
         return () => {
             cancelAnimationFrame(animId);
             window.removeEventListener('resize', resize);
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            if (heroRef.current) observer.unobserve(heroRef.current);
         };
     }, []);
 
@@ -195,11 +222,23 @@ const Hero = () => {
                         {/* Animated gradient border frame */}
                         <div className="image-frame">
                             <div className="frame-glow"></div>
-                            <img
-                                src="hero-image.png"
-                                alt="Premium Döner Catering Berlin - Dönerbros"
-                                className="hero-image"
-                            />
+                            <video
+                                className="hero-video"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                poster="hero-image.png"
+                            >
+                                {/* Place your custom video in the public folder as 'donerbros-shop.mp4' */}
+                                <source src="/donerbros-shop.mp4" type="video/mp4" />
+                                
+                                <img
+                                    src="hero-image.png"
+                                    alt="Premium Döner Catering Berlin - Dönerbros"
+                                    className="hero-image"
+                                />
+                            </video>
                         </div>
 
                         <div className="floating-badge badge-1">

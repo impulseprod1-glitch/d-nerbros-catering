@@ -65,6 +65,10 @@ export const translations = {
     menu_item_6_desc: '100% pflanzlicher Döner aus Erbsenprotein, fein gewürzt. Mit veganen Saucen und frischem Brot.',
     menu_item_7_name: 'Falafel & Halloumi Teller',
     menu_item_7_desc: 'Eine fleischlose Auswahl mit knusprigen Falafeln, gegrilltem Halloumi und Hummus.',
+    menu_item_8_name: 'Premium BBQ Burger',
+    menu_item_8_desc: 'Saftiger Rindfleisch-Burger mit rauchiger BBQ-Sauce, karamellisierten Zwiebeln und knusprigem Bacon.',
+    menu_item_9_name: 'Veganer Döner Wrap',
+    menu_item_9_desc: 'Knuspriger Wrap gefüllt mit veganem "Fleisch", frischem Salat und Tahini-Sauce.',
     menu_price_default: 'Auf Anfrage',
     menu_callout: 'Egal ob entspanntes Firmen-BBQ oder elegante Hochzeitsfeier – wir skalieren unser Catering nahtlos von 50 bis auf 300+ Gäste.',
 
@@ -127,10 +131,34 @@ export const translations = {
     cookie_accept: 'Akzeptieren',
     cookie_decline: 'Ablehnen',
 
+    // WhatsApp & Intro
+    intro_tagline: 'Premium Catering Berlin',
+    wa_bubble: 'Für welches Datum suchen Sie ein Catering? 😊',
+    wa_message: 'Hallo Döner Bros Catering, ich würde gerne mehr über euer Angebot erfahren!',
+    wa_tooltip: 'WhatsApp Catering',
+
     // Success Messages
     form_success: 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in Kürze.',
     form_error: 'Fehler beim Senden. Bitte versuchen Sie es später erneut.',
     
+    // Pricing Calculator
+    calc_title_1: 'Preis ',
+    calc_title_2: 'Berechnen',
+    calc_subtitle: 'Erhalten Sie sofort eine unverbindliche Kostenschätzung.',
+    calc_guests: 'Anzahl der Gäste',
+    calc_menu_type: 'Menü Auswahl',
+    calc_menu_classic: 'Classic Döner (ab 16€/P)',
+    calc_menu_mixed: 'Berlin Mixed (ab 20€/P)',
+    calc_menu_burger: 'Premium Burger (ab 22€/P)',
+    calc_menu_vegan: 'Vegan Special (ab 18€/P)',
+    calc_extras: 'Zusatzleistungen',
+    calc_extra_drinks: 'Getränke-Paket (+5€/P)',
+    calc_extra_dessert: 'Dessert-Paket (+4€/P)',
+    calc_extra_service: 'Premium Service-Personal (+250€)',
+    calc_total: 'Geschätzter Preis:',
+    calc_notice: '*Dies ist eine Schätzung. Der finale Preis kann abweichen.',
+    calc_cta: 'Angebot mit diesem Preis anfordern',
+
     // Google Ratings
     reviews_google_rating: 'Durchschnittliche Bewertung',
     reviews_total_count: 'Basierend auf 47 Google Business Rezensionen',
@@ -202,6 +230,10 @@ export const translations = {
     menu_item_6_desc: '100% plant-based döner made from pea protein, finely seasoned. With vegan sauces and fresh bread.',
     menu_item_7_name: 'Falafel & Halloumi Plate',
     menu_item_7_desc: 'An exquisite meatless selection with crispy falafels, grilled halloumi cheese and hummus.',
+    menu_item_8_name: 'Premium BBQ Burger',
+    menu_item_8_desc: 'Juicy beef burger with smoky BBQ sauce, caramelized onions and crispy bacon.',
+    menu_item_9_name: 'Vegan Döner Wrap',
+    menu_item_9_desc: 'Crispy wrap filled with vegan "meat", fresh salad and tahini sauce.',
     menu_price_default: 'On Request',
     menu_callout: 'Whether it\'s a relaxed corporate BBQ or an elegant wedding reception – we effortlessly scale our catering from 50 up to 300+ guests.',
 
@@ -264,9 +296,33 @@ export const translations = {
     cookie_accept: 'Accept',
     cookie_decline: 'Decline',
 
+    // WhatsApp & Intro
+    intro_tagline: 'Premium Catering Berlin',
+    wa_bubble: 'For which date are you looking for catering? 😊',
+    wa_message: 'Hello Döner Bros Catering, I would like to learn more about your offers!',
+    wa_tooltip: 'WhatsApp Catering',
+
     // Success Messages
     form_success: 'Thank you! Your request has been sent successfully. We will get back to you soon.',
     form_error: 'Error sending request. Please try again later.',
+
+    // Pricing Calculator
+    calc_title_1: 'Calculate ',
+    calc_title_2: 'Price',
+    calc_subtitle: 'Get an instant, non-binding cost estimate.',
+    calc_guests: 'Number of Guests',
+    calc_menu_type: 'Menu Selection',
+    calc_menu_classic: 'Classic Döner (from 16€/P)',
+    calc_menu_mixed: 'Berlin Mixed (from 20€/P)',
+    calc_menu_burger: 'Premium Burger (from 22€/P)',
+    calc_menu_vegan: 'Vegan Special (from 18€/P)',
+    calc_extras: 'Additional Services',
+    calc_extra_drinks: 'Drinks Package (+5€/P)',
+    calc_extra_dessert: 'Dessert Package (+4€/P)',
+    calc_extra_service: 'Premium Service Staff (+250€)',
+    calc_total: 'Estimated Price:',
+    calc_notice: '*This is an estimate. The final price may vary.',
+    calc_cta: 'Request Quote with this Price',
 
     // Google Ratings
     reviews_google_rating: 'Average Rating',

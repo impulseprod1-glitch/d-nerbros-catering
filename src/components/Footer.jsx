@@ -8,17 +8,43 @@ const Footer = ({ onNavigate }) => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
 
-        // Simulating API call
-        setTimeout(() => {
+        const formData = new FormData(e.target);
+        // Replace this with your actual Web3Forms Access Key
+        formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY"); 
+        
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json"
+                },
+                body: json
+            });
+            const resData = await res.json();
+
+            if (resData.success) {
+                setIsSubmitted(true);
+                e.target.reset();
+                // Form message resets after 5 seconds
+                setTimeout(() => setIsSubmitted(false), 5000);
+            } else {
+                console.error("Form error:", resData);
+                alert(t('form_error'));
+            }
+        } catch (error) {
+            console.error("Submission error:", error);
+            alert(t('form_error'));
+        } finally {
             setIsLoading(false);
-            setIsSubmitted(true);
-            // Form resets after 5 seconds
-            setTimeout(() => setIsSubmitted(false), 5000);
-        }, 1500);
+        }
     };
 
     return (
@@ -73,22 +99,22 @@ const Footer = ({ onNavigate }) => {
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label htmlFor="name">{t('form_name')}</label>
-                                        <input id="name" type="text" placeholder={t('form_name_placeholder')} required />
+                                        <input id="name" name="name" type="text" placeholder={t('form_name_placeholder')} required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="email">{t('form_email')}</label>
-                                        <input id="email" type="email" placeholder={t('form_email_placeholder')} required />
+                                        <input id="email" name="email" type="email" placeholder={t('form_email_placeholder')} required />
                                     </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group">
                                         <label htmlFor="date">{t('form_date')}</label>
-                                        <input id="date" type="date" required />
+                                        <input id="date" name="date" type="date" required />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="guests">{t('form_guests')}</label>
-                                        <select id="guests" required>
+                                        <select id="guests" name="guests" required>
                                             <option value="">{t('form_guests_placeholder')}</option>
                                             <option value="50-100">{t('form_guests_50')}</option>
                                             <option value="100-200">{t('form_guests_100')}</option>
@@ -100,7 +126,7 @@ const Footer = ({ onNavigate }) => {
 
                                 <div className="form-group">
                                     <label htmlFor="notes">{t('form_notes')}</label>
-                                    <textarea id="notes" rows="4" placeholder={t('form_notes_placeholder')}></textarea>
+                                    <textarea id="notes" name="notes" rows="4" placeholder={t('form_notes_placeholder')}></textarea>
                                 </div>
 
                                 <button type="submit" className={`btn btn-primary w-full submit-btn ${isLoading ? 'loading' : ''}`} disabled={isLoading}>

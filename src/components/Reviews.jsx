@@ -6,6 +6,7 @@ import './Reviews.css';
 const Reviews = () => {
     const { t } = useLanguage();
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     const mockReviews = [
         {
@@ -46,11 +47,12 @@ const Reviews = () => {
     ];
 
     useEffect(() => {
+        if (isHovered) return;
         const timer = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % mockReviews.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, [mockReviews.length]);
+    }, [mockReviews.length, isHovered]);
 
     const handleNext = () => setCurrentIndex((prevIndex) => (prevIndex + 1) % mockReviews.length);
     const handlePrev = () => setCurrentIndex((prevIndex) => (prevIndex - 1 + mockReviews.length) % mockReviews.length);
@@ -83,7 +85,11 @@ const Reviews = () => {
                     </div>
                 </div>
 
-                <div className="reviews-slider-container">
+                <div 
+                    className="reviews-slider-container"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <button className="slider-btn prev-btn" onClick={handlePrev} aria-label="Previous">
                         <ChevronLeft size={24} />
                     </button>

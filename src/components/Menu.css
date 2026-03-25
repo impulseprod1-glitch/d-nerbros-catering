@@ -155,11 +155,12 @@
   background: rgba(15, 15, 15, 0.5);
   padding: 1px; /* border thickness */
   isolation: isolate;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .menu-item-premium:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .card-border-gradient-menu {
@@ -176,7 +177,9 @@
 }
 
 .menu-item-content {
-  background: #111111;
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 15px;
   height: 100%;
   display: flex;

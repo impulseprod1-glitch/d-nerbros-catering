@@ -1,0 +1,117 @@
+/* =========================================
+   GALLERY SECTION (VERTICAL VIDEOS)
+   ========================================= */
+
+.gallery {
+  position: relative;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.gallery-card {
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 8px; /* Inner padding for glass frame */
+  transition: transform var(--transition-slow), box-shadow var(--transition-normal);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.gallery-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16; /* Standard vertical video format */
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.gallery-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-card:hover .gallery-video {
+  transform: scale(1.05); /* Slight internal zoom on hover */
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3rem 1.5rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.video-title {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  transform: translateY(10px);
+  opacity: 0.9;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.gallery-card:hover .video-title {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-card {
+    min-width: 75vw; /* Make cards scrollable sideways */
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-card {
+    min-width: 85vw;
+  }
+}
