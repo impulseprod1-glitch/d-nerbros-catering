@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calculator } from 'lucide-react';
+import { Calculator, Utensils, Flame, ChefHat, Leaf } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import './PricingCalculator.css';
 
@@ -13,6 +13,13 @@ const PricingCalculator = () => {
         service: false
     });
     const [total, setTotal] = useState(0);
+
+    const menuIcons = {
+        classic: <Utensils size={20} />,
+        mixed: <Flame size={20} />,
+        burger: <ChefHat size={20} />,
+        vegan: <Leaf size={20} />
+    };
 
     const basePrices = {
         classic: 16,
@@ -78,17 +85,18 @@ const PricingCalculator = () => {
                                 <label>{t('calc_menu_type')}</label>
                                 <div className="calc-radio-group">
                                     {['classic', 'mixed', 'burger', 'vegan'].map(type => (
-                                        <label key={type} className={`calc-radio ${menuType === type ? 'active' : ''}`}>
-                                            <input 
-                                                type="radio" 
-                                                name="menuType" 
-                                                value={type} 
-                                                checked={menuType === type} 
-                                                onChange={(e) => setMenuType(e.target.value)} 
-                                            />
-                                            <span className="radio-text">{t(`calc_menu_${type}`)}</span>
-                                        </label>
-                                    ))}
+                                    <label key={type} className={`calc-radio ${menuType === type ? 'active' : ''}`}>
+                                        <input 
+                                            type="radio" 
+                                            name="menuType" 
+                                            value={type} 
+                                            checked={menuType === type} 
+                                            onChange={(e) => setMenuType(e.target.value)} 
+                                        />
+                                        <span className="radio-icon">{menuIcons[type]}</span>
+                                        <span className="radio-text">{t(`calc_menu_${type}`)}</span>
+                                    </label>
+                                ))}
                                 </div>
                             </div>
 

@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Menu.css';
 
 const Menu = () => {
     const [activeTab, setActiveTab] = useState('doner_station');
     const { t } = useLanguage();
+    const reveal = useScrollReveal();
+
+    // Trigger reveal animation manually on tab switch
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (typeof reveal === 'function') {
+                reveal();
+            }
+        }, 100);
+        return () => clearTimeout(timer);
+    }, [activeTab, reveal]);
 
     const menuItems = {
         doner_station: [
@@ -15,12 +27,12 @@ const Menu = () => {
         burger_station: [
             { id: 4, nameKey: 'menu_item_4_name', descKey: 'menu_item_4_desc', priceKey: 'menu_price_default', image: '/menu-burgers.png' },
             { id: 5, nameKey: 'menu_item_5_name', descKey: 'menu_item_5_desc', priceKey: 'menu_price_default', image: '/menu-street-food.png' },
-            { id: 8, nameKey: 'menu_item_8_name', descKey: 'menu_item_8_desc', priceKey: 'menu_price_default', image: '/menu-beef-doner.png' }
+            { id: 8, nameKey: 'menu_item_8_name', descKey: 'menu_item_8_desc', priceKey: 'menu_price_default', image: '/menu-burgers.png' } // Fallback to burgers for BBQ
         ],
         vegan_veggie: [
-            { id: 6, nameKey: 'menu_item_6_name', descKey: 'menu_item_6_desc', priceKey: 'menu_price_default', image: '/menu-mixed-doner.png' },
-            { id: 7, nameKey: 'menu_item_7_name', descKey: 'menu_item_7_desc', priceKey: 'menu_price_default', image: '/menu-street-food.png' },
-            { id: 9, nameKey: 'menu_item_9_name', descKey: 'menu_item_9_desc', priceKey: 'menu_price_default', image: '/menu-mixed-doner.png' }
+            { id: 6, nameKey: 'menu_item_6_name', descKey: 'menu_item_6_desc', priceKey: 'menu_price_default', image: '/menu-vegan.png' },
+            { id: 7, nameKey: 'menu_item_7_name', descKey: 'menu_item_7_desc', priceKey: 'menu_price_default', image: '/menu-falafel.png' },
+            { id: 9, nameKey: 'menu_item_9_name', descKey: 'menu_item_9_desc', priceKey: 'menu_price_default', image: '/menu-vegan.png' }
         ]
     };
 
@@ -70,7 +82,7 @@ const Menu = () => {
                 </div>
 
                 <div className="menu-content">
-                    <div className="menu-grid">
+                    <div key={activeTab} className="menu-grid">
                         {menuItems[activeTab].map((item, index) => (
                             <div key={item.id} className={`menu-item-premium group reveal reveal-up delay-${(index % 3) + 1}`}>
                                 <div className="card-border-gradient-menu"></div>

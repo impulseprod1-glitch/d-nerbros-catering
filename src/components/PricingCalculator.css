@@ -80,6 +80,7 @@
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     outline: none;
+    box-sizing: border-box;
 }
 
 .calc-slider::-webkit-slider-thumb {
@@ -136,9 +137,17 @@
     background: rgba(255, 255, 255, 0.08);
 }
 
-.calc-radio.active {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: rgba(212, 175, 55, 0.5);
+.radio-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--color-text-muted);
+    transition: color 0.3s ease;
+}
+
+.calc-radio.active .radio-icon {
+    color: var(--color-accent);
 }
 
 .radio-text {

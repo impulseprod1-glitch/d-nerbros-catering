@@ -133,7 +133,6 @@ export const translations = {
 
     // WhatsApp & Intro
     intro_tagline: 'Premium Catering Berlin',
-    wa_bubble: 'Für welches Datum suchen Sie ein Catering? 😊',
     wa_message: 'Hallo Döner Bros Catering, ich würde gerne mehr über euer Angebot erfahren!',
     wa_tooltip: 'WhatsApp Catering',
 
@@ -298,7 +297,6 @@ export const translations = {
 
     // WhatsApp & Intro
     intro_tagline: 'Premium Catering Berlin',
-    wa_bubble: 'For which date are you looking for catering? 😊',
     wa_message: 'Hello Döner Bros Catering, I would like to learn more about your offers!',
     wa_tooltip: 'WhatsApp Catering',
 

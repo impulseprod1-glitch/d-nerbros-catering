@@ -1,0 +1,6 @@
+{
+  "name": "donerbros",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

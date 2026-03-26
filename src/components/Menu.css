@@ -323,6 +323,8 @@
   
   .menu-item-name {
     width: 100%;
+    white-space: normal;
+    font-size: 1.3rem;
   }
   
   .tab-btn {

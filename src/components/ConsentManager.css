@@ -73,13 +73,29 @@
 }
 
 @media (max-width: 768px) {
+  .consent-banner {
+    padding: 1rem;
+  }
+
   .consent-content {
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
   }
   
+  .consent-text {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
   .consent-actions {
     width: 100%;
     justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .consent-btn {
+    padding: 0.5rem 1rem;
+    flex: 1;
   }
 }

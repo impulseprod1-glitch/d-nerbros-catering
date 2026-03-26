@@ -3,9 +3,9 @@ import './Gallery.css';
 
 const videos = [
   // Fixed file extensions exactly as they appear in the public folder
-  { id: 1, src: '/gallery-1.mp4.mp4', title: 'Premium Kesim', poster: '/gallery-poster-1.jpg' },
-  { id: 2, src: '/gallery-2.mp4.mp4', title: 'Taze Malzemeler', poster: '/gallery-poster-2.jpg' },
-  { id: 3, src: '/gallery-3.mp4.mp4', title: 'Catering Deneyimi', poster: '/gallery-poster-3.jpg' }
+  { id: 1, src: '/gallery-1.mp4.mp4', title: 'Premium Kesim', poster: '/gallery-poster-1.png' },
+  { id: 2, src: '/gallery-2.mp4.mp4', title: 'Taze Malzemeler', poster: '/gallery-poster-2.png' },
+  { id: 3, src: '/gallery-3.mp4.mp4', title: 'Catering Deneyimi', poster: '/gallery-poster-3.png' }
 ];
 
 const GalleryVideo = ({ vid }) => {
@@ -24,7 +24,7 @@ const GalleryVideo = ({ vid }) => {
           }
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 }); // Trigger a bit earlier
 
     if (videoRef.current) observer.observe(videoRef.current);
     
@@ -33,8 +33,13 @@ const GalleryVideo = ({ vid }) => {
     };
   }, []);
 
+  const glowColors = ['glow-gold', 'glow-emerald', 'glow-crimson'];
+
   return (
-    <div className="gallery-card glass-panel">
+    <div className={`gallery-card glass-panel ${glowColors[vid.id - 1] || 'glow-gold'}`}>
+      {/* Premium Ambient Glow */}
+      <div className="gallery-card-glow"></div>
+      <div className="gallery-card-glow secondary"></div>
       <div className="video-wrapper">
         <video
           ref={videoRef}
@@ -43,7 +48,7 @@ const GalleryVideo = ({ vid }) => {
           playsInline
           className="gallery-video"
           poster={vid.poster}
-          preload="none"
+          preload="auto"
         >
           <source src={vid.src} type="video/mp4" />
         </video>
